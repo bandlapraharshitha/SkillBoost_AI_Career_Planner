@@ -1,24 +1,23 @@
-import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import FeatureSection from "./components/FeatureSection";
-import Workflow from "./components/Workflow";
-import Footer from "./components/Footer";
-import Pricing from "./components/Pricing";
-import Testimonials from "./components/Testimonials";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Landing from "./pages/Landing";
+import AppShell from "./pages/AppShell";
+import Home from "./pages/app/Home";
+import Roles from "./pages/app/Roles";
+import Profile from "./pages/app/Profile";
 
 const App = () => {
   return (
-    <>
-      <Navbar />
-      <div className="max-w-7xl mx-auto pt-20 px-6">
-        <HeroSection />
-        <FeatureSection />
-        <Workflow />
-        <Pricing />
-        <Testimonials />
-        <Footer />
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/app" element={<AppShell />}>
+          <Route index element={<Home />} />
+          <Route path="roles" element={<Roles />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
